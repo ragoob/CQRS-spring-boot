@@ -14,6 +14,7 @@ Implementation for CQRS Read DB and Write DB
 
 ## Patterns
  - CQRS
+ - Mediator
  - DDD
  - event sourcing
  - Optimistic concurrency control
