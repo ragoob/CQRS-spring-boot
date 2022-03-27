@@ -8,7 +8,7 @@ Implementation for CQRS Read DB and Write DB
 ## Technologies
   - Mongodb for event store
   - Postgres Read Database
-  - Kafka event bus with at least once idempotency Manual commit only if publish successfully (Duplicates can happened)
+  - Kafka event bus with at least once idempotency Manual commit only if message proccessed successfully to read database (Duplicates can happen)
   - Spring-boot framework 
   - JAPA
 
