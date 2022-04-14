@@ -23,8 +23,6 @@ public class AccountAggregate extends AggregateRoot {
     1. validate
     2. fire event
 
-    and the logic is being done in the event listener (the "apply" method)
-
     can we have some kind of generalization here so to reduce the plumping code?
 
      */
