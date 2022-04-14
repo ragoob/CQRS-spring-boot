@@ -14,6 +14,19 @@ public class AccountAggregate extends AggregateRoot {
     private  Boolean active;
     private  double balance;
 
+    /*
+
+    I Like the idea in this class ....
+
+    I think there's a pattern here too..
+
+    1. validate
+    2. fire event
+
+    can we have some kind of generalization here so to reduce the plumping code?
+
+     */
+
     public  AccountAggregate(OpenAccountCommand command){
         raiseEvent(AccountOpenedEvent.builder()
                 .id(command.getId())

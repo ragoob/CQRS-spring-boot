@@ -15,11 +15,20 @@ public class CommandApplication {
 
 	@Autowired
 	private CommandHandler commandHandler;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CommandApplication.class, args);
 	}
+
 	@PostConstruct
 	public  void  registerHandlers(){
+
+		// there's some indirection here still it is good to build a framework
+		// so to complete the picture, can we do the registration automagically as well?
+
+		// e.g iterate through methods in the CommandHandler (marked with some annotation e.g. @CommandHandler)
+		// and then get its methods and call commandDispatcher.registerHandler for each method hence we have the parameter types already
+
 		commandDispatcher.registerHandler(OpenAccountCommand.class,commandHandler::handle);
 		commandDispatcher.registerHandler(DepositFundsCommand.class,commandHandler::handle);
 		commandDispatcher.registerHandler(WithdrawFundsCommand.class,commandHandler::handle);

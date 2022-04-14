@@ -7,8 +7,23 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AccountCommandHandler implements  CommandHandler{
-    @Autowired
+
+    @Autowired // use constructor injection
     private EventSourcingHandler<AccountAggregate> eventSourcingHandler;
+
+    /*
+
+    I can see a pattern here in all the methods, here's the code in this class:
+
+        var aggregate = eventSourcingHandler.getById(command.getId());
+        // do some logic related to the function
+        eventSourcingHandler.save(aggregate);
+
+
+    so can we have some kind of AOP, so to have an aspect for the non-functional code here
+
+     */
+
     @Override
     public void handle(OpenAccountCommand command) {
       var aggregate = new AccountAggregate(command);

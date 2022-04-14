@@ -42,9 +42,10 @@ public abstract class AggregateRoot {
             method.invoke(this,event);
         } catch (NoSuchMethodException e) {
            logger.log(Level.WARNING, MessageFormat.format("The apply method was not found in the aggregate for {0}",event.getClass().getName()));
-
+// should we rethrow some exception to raise some flag, or will you depend on alerts from log aggregator solution?
         }catch (Exception e){
             logger.log(Level.SEVERE,"Error applying event to aggregate",e);
+            // should we rethrow some exception to raise some flag, or will you depend on alerts from log aggregator solution?
         }finally {
             changes.add(event);
         }
