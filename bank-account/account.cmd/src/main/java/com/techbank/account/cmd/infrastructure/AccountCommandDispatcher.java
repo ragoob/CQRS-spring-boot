@@ -11,7 +11,11 @@ import java.util.List;
 import java.util.Map;
 @Service
 public class AccountCommandDispatcher implements CommandDispatcher {
+
+    // use ConcurrentHashMap for better concurrency
     private  final Map<Class<? extends  BaseCommand>, List<CommandHandlerMethod>> routes = new HashMap<>();
+
+
     @Override
     public <T extends BaseCommand> void registerHandler(Class<T> type, CommandHandlerMethod<T> handler) {
         var handlers = routes.computeIfAbsent(type,c -> new LinkedList<>());

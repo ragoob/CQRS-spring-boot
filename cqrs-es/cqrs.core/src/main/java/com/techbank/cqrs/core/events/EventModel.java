@@ -13,7 +13,7 @@ import java.util.Date;
 public class EventModel {
     @Id
     private  String id;
-    private Date timeStamp;
+    private Date timeStamp;     // better to use java.time types e.g. Instant
     private  String aggregateIdentifier;
     private  String aggregateType;
     private  int version;

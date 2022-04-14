@@ -21,8 +21,9 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping(path = "/api/v1/openBankAccount")
 public class OpenAccountController {
-    private  final Logger logger = Logger.getLogger(OpenAccountController.class.getName());
-    @Autowired
+    private  final Logger logger = Logger.getLogger(OpenAccountController.class.getName()); // could use @SLF4j from lombok
+
+    @Autowired  // use constructor injection
     private CommandDispatcher commandDispatcher;
 
     @PostMapping
@@ -32,7 +33,12 @@ public class OpenAccountController {
         try{
             commandDispatcher.send(command);
             return  new ResponseEntity<>(new OpenAccountResponse("Bank account creation request completed successfully",id), HttpStatus.CREATED);
+
         }catch (IllegalStateException e){
+
+            // Use Exception Translator Pattern for generic exceptions to make code more clear
+            // see https://www.baeldung.com/exception-handling-for-rest-with-spring#controlleradvice
+
             logger.log(Level.WARNING, MessageFormat.format("Client made a bad request -  {0}.",e.toString()));
             return new ResponseEntity<>(new BaseResponse(e.toString()),HttpStatus.BAD_REQUEST);
         }catch (Exception e){

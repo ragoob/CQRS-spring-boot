@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AccountEventProducer implements EventProducer {
-    @Autowired
+    @Autowired  // constructor injection is preferred over field/setter injection
     private KafkaTemplate<String,Object> kafkaTemplate;
 
     @Override
